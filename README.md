@@ -1,4 +1,4 @@
-# Collaborative Chat App with WebSocket Integration
+# Virtual Workspace
 
 ## Project Overview
 This project is a **Virtual WorkspaceApplication** that allows users to:
