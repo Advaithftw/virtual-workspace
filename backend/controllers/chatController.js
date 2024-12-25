@@ -1,20 +1,8 @@
 const Message = require('../models/Message');
 const User = require('../models/User');
 const { io } = require('../config/socketConfig');
-const Room = require('../models/Room');
 
-
-const generateRoomCode = () => {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  let code = '';
-  for (let i = 0; i < 6; i++) {
-    code += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return code;
-};
-
-
-const sendMessage = async (req, res) => {
+exports.sendMessage = async (req, res) => {
   try {
     const { senderId, recipientId, message } = req.body;
 
@@ -24,7 +12,7 @@ const sendMessage = async (req, res) => {
 
     const sender = await User.findById(senderId);
     const recipient = await User.findById(recipientId);
-
+    
     if (!sender || !recipient) {
       return res.status(404).json({ error: 'Sender or recipient not found' });
     }
@@ -53,7 +41,7 @@ const sendMessage = async (req, res) => {
   }
 };
 
-const getMessages = async (req, res) => {
+exports.getMessages = async (req, res) => {
   try {
     const { user1Id, user2Id } = req.params;
 
@@ -71,32 +59,4 @@ const getMessages = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'Failed to retrieve messages' });
   }
-};
-
-
-const createRoom = async (req, res) => {
-  try {
-    let roomCode;
-    let roomExists;
-
-    do {
-      roomCode = generateRoomCode();
-      roomExists = await Room.findOne({ roomCode });
-    } while (roomExists);
-
-  
-    const newRoom = new Room({ roomCode });
-    await newRoom.save();
-
-    res.status(201).json({ roomCode });
-  } catch (error) {
-    console.error('Error creating room:', error);
-    res.status(500).json({ error: 'Failed to create room. Please try again.' });
-  }
-};
-
-module.exports = {
-  sendMessage,
-  getMessages,
-  createRoom,
 };

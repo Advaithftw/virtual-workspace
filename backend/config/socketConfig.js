@@ -13,7 +13,7 @@ const initSocket = (server) => {
   io.on('connection', (socket) => {
     console.log('A user connected: ' + socket.id);
 
-    socket.on('message', (msg) => {
+    socket.on('chat message', (msg) => {
       console.log('Message received:', msg);
       socket.broadcast.emit('chat message', msg);
     });

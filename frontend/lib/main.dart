@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const LoginPage(),
           '/signup': (context) => const SignUpPage(),
           '/home': (context) => const HomePage(),
-          '/createRoom': (context) => CreateRoomPage(),
+          '/createRoom': (context) => const CreateRoomPage(),
           '/joinRoom': (context) => const JoinRoomPage(),
           '/chat': (context) {
             final args = ModalRoute.of(context)?.settings.arguments;
