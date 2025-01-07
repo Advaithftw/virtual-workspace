@@ -1,6 +1,34 @@
 const Message = require('../models/Message');
 const User = require('../models/User');
+const Room = require('../models/Room');
 const { io } = require('../config/socketConfig');
+
+exports.createRoom = async (req, res) => {
+  try {
+    const { roomCode } = req.body;
+
+    if (!roomCode) {
+      return res.status(400).json({ error: 'Room code is required' });
+    }
+
+    const existingRoom = await Room.findOne({ roomCode });
+    if (existingRoom) {
+      return res.status(400).json({ error: 'Room already exists' });
+    }
+
+    const newRoom = new Room({ roomCode });
+    await newRoom.save();
+
+    res.status(200).json({
+      message: 'Room created successfully',
+      room: newRoom,
+    });
+  } catch (error) {
+    console.error('Error creating room:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 
 exports.sendMessage = async (req, res) => {
   try {
@@ -12,7 +40,7 @@ exports.sendMessage = async (req, res) => {
 
     const sender = await User.findById(senderId);
     const recipient = await User.findById(recipientId);
-    
+
     if (!sender || !recipient) {
       return res.status(404).json({ error: 'Sender or recipient not found' });
     }
@@ -41,6 +69,7 @@ exports.sendMessage = async (req, res) => {
   }
 };
 
+
 exports.getMessages = async (req, res) => {
   try {
     const { user1Id, user2Id } = req.params;
@@ -58,5 +87,25 @@ exports.getMessages = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to retrieve messages' });
+  }
+};
+
+exports.joinRoom = async (req, res) => {
+  try {
+    const { roomCode } = req.params;
+
+    const room = await Room.findOne({ roomCode });
+
+    if (!room) {
+      return res.status(404).json({ error: 'Room not found' });
+    }
+
+    res.status(200).json({
+      message: 'Room found',
+      room,
+    });
+  } catch (error) {
+    console.error('Error joining room:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };

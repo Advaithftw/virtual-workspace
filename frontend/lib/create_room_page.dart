@@ -1,6 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'chat_screen.dart'; 
 
 class CreateRoomPage extends StatefulWidget {
   const CreateRoomPage({super.key});
@@ -10,7 +11,6 @@ class CreateRoomPage extends StatefulWidget {
 }
 
 class _CreateRoomPageState extends State<CreateRoomPage> {
-  String? _roomCode;
   bool _isLoading = false;
 
   Future<void> _createRoom() async {
@@ -18,31 +18,31 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
       _isLoading = true;
     });
 
-    final url = Uri.parse('http://localhost:3000/api/chat/create-room'); 
-    print('Attempting to create room. Backend URL: $url');
+    const url = 'http://10.0.2.2:3000/api/chat/create-room';
+    const roomName = 'New Room'; 
 
     try {
       final response = await http.post(
-        url,
+        Uri.parse(url),
         headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'roomName': roomName}),
       );
 
-      print('Response received. Status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
-
       if (response.statusCode == 201) {
-        final responseData = jsonDecode(response.body);
-        print('Room created successfully. Response data: $responseData');
-        setState(() {
-          _roomCode = responseData['roomCode'];
-        });
+        final data = jsonDecode(response.body);
+        final roomCode = data['room']['name']; 
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatScreen(roomCode: roomCode),
+          ),
+        );
       } else {
-        print('Failed to create room. Server response: ${response.body}');
-        _showError('Failed to create room. Please try again.');
+        final error = jsonDecode(response.body)['error'];
+        _showError('Failed to create room: $error');
       }
-    } catch (error) {
-      print('Error occurred while creating room: $error');
-      _showError('An error occurred. Please check your internet connection.');
+    } catch (err) {
+      _showError('An error occurred: $err');
     } finally {
       setState(() {
         _isLoading = false;
@@ -66,28 +66,10 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Create Room')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Center(
         child: _isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : _roomCode != null
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Room Code: $_roomCode',
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/chat', arguments: _roomCode);
-                        },
-                        child: const Text('Go to Workspace'),
-                      ),
-                    ],
-                  )
-                : const Center(child: Text('Failed to create room.')),
+            ? const CircularProgressIndicator()
+            : const Text('Redirecting to the chat room...'),
       ),
     );
   }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "213462518123",
+    "project_id": "virtual-workspace-99aee",
+    "storage_bucket": "virtual-workspace-99aee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:213462518123:android:44ab4ecd48bbdf8663a42e",
+        "android_client_info": {
+          "package_name": "com.example.spider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdjA12IlYsH1zSYg2E9s9SS9FjNR8FoPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

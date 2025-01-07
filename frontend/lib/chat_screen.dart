@@ -7,17 +7,26 @@ class ChatScreen extends StatefulWidget {
   const ChatScreen({required this.roomCode, super.key});
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+   createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
+  final List<String> _messages = []; 
 
   @override
   void initState() {
     super.initState();
-    Provider.of<WebSocketService>(context, listen: false)
-        .connectToRoom(widget.roomCode);
+    final webSocketService = Provider.of<WebSocketService>(context, listen: false);
+
+    webSocketService.connectToRoom(widget.roomCode);
+
+
+    webSocketService.messages.listen((message) {
+      setState(() {
+        _messages.add(message); 
+      });
+    });
   }
 
   @override
@@ -31,16 +40,11 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder<String>(
-              stream: webSocketService.messages.cast<String>(), 
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListView(
-                    children: [Text(snapshot.data!)],
-                  );
-                }
-                return const Center(child: Text('No messages yet.'));
-              },
+            child: ListView.builder(
+              itemCount: _messages.length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(_messages[index]),
+              ),
             ),
           ),
           Row(
@@ -54,8 +58,40 @@ class _ChatScreenState extends State<ChatScreen> {
               IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () {
-                  webSocketService.sendMessage(_controller.text, widget.roomCode);
-                  _controller.clear(); 
+                  final message = _controller.text;
+                  webSocketService.sendMessage(message, widget.roomCode);
+                  setState(() {
+                    _messages.add('You: $message'); 
+                  });
+                  _controller.clear();
+                },
+              ),
+            ],
+          ),
+          const Divider(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton.icon(
+                icon: const Icon(Icons.upload_file),
+                label: const Text('File Sharing'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/fileSharing',
+                    arguments: widget.roomCode,
+                  );
+                },
+              ),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.edit),
+                label: const Text('Editor'),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/editor',
+                    arguments: widget.roomCode,
+                  );
                 },
               ),
             ],

@@ -1,0 +1,90 @@
+[debug] [2025-01-05T19:31:07.658Z] ----------------------------------------------------------------------
+[debug] [2025-01-05T19:31:07.668Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-01-05T19:31:07.668Z] CLI Version:   13.29.1
+[debug] [2025-01-05T19:31:07.669Z] Platform:      win32
+[debug] [2025-01-05T19:31:07.669Z] Node Version:  v20.15.1
+[debug] [2025-01-05T19:31:07.669Z] Time:          Mon Jan 06 2025 01:01:07 GMT+0530 (India Standard Time)
+[debug] [2025-01-05T19:31:07.669Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-05T19:31:07.677Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-05T19:31:07.677Z] > authorizing via signed-in user (advaith.t20@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  c:\virtual workspace
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-01-05T19:33:44.993Z] Checked if tokens are valid: true, expires at: 1736108371292
+[debug] [2025-01-05T19:33:44.996Z] Checked if tokens are valid: true, expires at: 1736108371292
+[debug] [2025-01-05T19:33:45.003Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-01-05T19:33:45.003Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"virtual-workspace","name":"virtual-workspace"}
+[debug] [2025-01-05T19:33:46.670Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 409
+[debug] [2025-01-05T19:33:46.670Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":409,"message":"Requested entity already exists","status":"ALREADY_EXISTS"}}
+[debug] [2025-01-05T19:33:46.968Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 409, Requested entity already exists
+    at responseToError (C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project because there is already a project with ID virtual-workspace. Please try again with a unique project ID.
+[debug] [2025-01-05T19:34:02.258Z] ----------------------------------------------------------------------
+[debug] [2025-01-05T19:34:02.268Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-01-05T19:34:02.269Z] CLI Version:   13.29.1
+[debug] [2025-01-05T19:34:02.269Z] Platform:      win32
+[debug] [2025-01-05T19:34:02.269Z] Node Version:  v20.15.1
+[debug] [2025-01-05T19:34:02.269Z] Time:          Mon Jan 06 2025 01:04:02 GMT+0530 (India Standard Time)
+[debug] [2025-01-05T19:34:02.270Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-01-05T19:34:02.277Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-01-05T19:34:02.277Z] > authorizing via signed-in user (advaith.t20@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  c:\virtual workspace
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  If you want to create a project in a Google Cloud organization or folder, please use "firebase projects:create" instead, and return to this command when you've created the project. 
+[debug] [2025-01-05T19:34:56.881Z] Checked if tokens are valid: true, expires at: 1736108371292
+[debug] [2025-01-05T19:34:56.881Z] Checked if tokens are valid: true, expires at: 1736108371292
+[debug] [2025-01-05T19:34:56.882Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects [none]
+[debug] [2025-01-05T19:34:56.883Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"projectId":"ViWoRtRk","name":"virtual-workspace"}
+[debug] [2025-01-05T19:34:58.383Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects 400
+[debug] [2025-01-05T19:34:58.383Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects {"error":{"code":400,"message":"field [project_id] has issue [project_id contains invalid characters]","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.BadRequest","fieldViolations":[{"field":"project_id","description":"project_id contains invalid characters"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"url":"https://cloud.google.com/resource-manager/reference/rest/v1/projects"}]}]}}
+[debug] [2025-01-05T19:34:58.683Z] FirebaseError: Request to https://cloudresourcemanager.googleapis.com/v1/projects had HTTP Error: 400, field [project_id] has issue [project_id contains invalid characters]
+    at responseToError (C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\responseToError.js:52:12)
+    at RetryOperation._fn (C:\Users\Advaith\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:312:77)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+[error] 
+[error] Error: Failed to create project. See firebase-debug.log for more info.
