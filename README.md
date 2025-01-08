@@ -5,6 +5,7 @@ This project is a **Virtual WorkspaceApplication** that allows users to:
 - Create and join chat rooms.
 - Exchange real-time messages using WebSocket technology.
 - Seamlessly interact through a clean and user-friendly interface.
+- Collaborate on File editing in real time.
 
 ## Features Implemented
 ### Backend
@@ -14,14 +15,15 @@ This project is a **Virtual WorkspaceApplication** that allows users to:
 - **Socket.IO Integration**:
   - Real-time communication using WebSocket protocol.
   - Users can join specific chat rooms and broadcast messages to the entire room.
+  - Enable collaborative file editing with real-time updates
 - **Room Management**:
   - Users can create rooms and join existing rooms via unique codes.
   - Notifications are sent to all users in a room when a new user joins or leaves.
 
 ### Frontend
 - **Flutter Application**:
-  - A modern UI built using Flutter for mobile users.
-  - Includes features for room creation, joining rooms, and sending messages.
+  - UI built using Flutter for mobile users.
+  - Includes features for room creation, joining rooms, and sending messages,file sharing and collaborative editing.
   - Integrates seamlessly with WebSocket to provide real-time updates.
 - **Provider Pattern**:
   - State management is handled using the `Provider` package.
@@ -44,6 +46,7 @@ This project is a **Virtual WorkspaceApplication** that allows users to:
 - **Backend**: Node.js, Express.js, Socket.IO
 - **Frontend**: Flutter, Provider
 - **Database**: MongoDB (for user authentication and room storage)
+- **Authentication**: Firebase (Supports Oauth and Facebook Auth)
 
 ## Setup and Installation
 1. **Clone the Repository**:

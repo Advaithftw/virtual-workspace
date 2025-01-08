@@ -18,7 +18,7 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
       _isLoading = true;
     });
 
-    const url = 'http://10.0.2.2:3000/api/chat/create-room';
+    const url = 'http://10.0.2.2:3000/api/chat/createRoom';
     const roomName = 'New Room'; 
 
     try {
@@ -28,7 +28,7 @@ class _CreateRoomPageState extends State<CreateRoomPage> {
         body: jsonEncode({'roomName': roomName}),
       );
 
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         final roomCode = data['room']['name']; 
         Navigator.pushReplacement(
